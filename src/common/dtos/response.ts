@@ -47,10 +47,6 @@ export const ApiResponseSchema = <T extends TSchema>(dataSchema: T) =>
 		data: t.Optional(t.Union([dataSchema, t.Null()]))
 	})
 
-/**
- * GENERIC API RESPONSE SCHEMA WITH PAGINATION
- * Dành cho list/array có pagination
- */
 export const ApiResponseWithMetaSchema = <T extends TSchema>(dataSchema: T) =>
 	t.Object({
 		success: t.Boolean(),
