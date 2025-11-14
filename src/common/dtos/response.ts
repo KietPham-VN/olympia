@@ -50,6 +50,7 @@ export const ApiResponseSchema = <T extends TSchema>(dataSchema: T) =>
 export const ApiResponseWithMetaSchema = <T extends TSchema>(dataSchema: T) =>
 	t.Object({
 		success: t.Boolean(),
+
 		code: t.Number(),
 		message: t.Optional(t.String()),
 		error: t.Optional(t.String()),
