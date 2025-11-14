@@ -6,13 +6,13 @@ import {
 	getUserByIdDetail,
 	createUserDetail,
 	updateUserDetail,
-	deleteUserDetail,
+	deleteUserDetail
 } from './model.details'
 import {
 	wrapResponse,
 	ApiResponseSchema,
 	PaginatedResponseSchema,
-	ErrorResponseSchema,
+	ErrorResponseSchema
 } from '../../common/dtos/response'
 
 export const user = new Elysia({ prefix: '/users' })
@@ -33,8 +33,8 @@ export const user = new Elysia({ prefix: '/users' })
 		{
 			detail: getAllUsersDetail,
 			response: {
-				200: PaginatedResponseSchema(CreateUserBody()),
-			},
+				200: PaginatedResponseSchema(CreateUserBody())
+			}
 		}
 	)
 
@@ -51,8 +51,8 @@ export const user = new Elysia({ prefix: '/users' })
 			params: t.Object({ id: t.String() }),
 			response: {
 				200: ApiResponseSchema(CreateUserBody()),
-				404: ErrorResponseSchema,
-			},
+				404: ErrorResponseSchema
+			}
 		}
 	)
 
@@ -68,8 +68,8 @@ export const user = new Elysia({ prefix: '/users' })
 			body: CreateUserBody(),
 			response: {
 				201: ApiResponseSchema(CreateUserBody()),
-				400: ErrorResponseSchema,
-			},
+				400: ErrorResponseSchema
+			}
 		}
 	)
 
@@ -88,8 +88,8 @@ export const user = new Elysia({ prefix: '/users' })
 			response: {
 				200: ApiResponseSchema(UpdateUserBody()),
 				404: ErrorResponseSchema,
-				400: ErrorResponseSchema,
-			},
+				400: ErrorResponseSchema
+			}
 		}
 	)
 
@@ -106,7 +106,7 @@ export const user = new Elysia({ prefix: '/users' })
 			params: t.Object({ id: t.String() }),
 			response: {
 				200: ApiResponseSchema(CreateUserBody()),
-				404: ErrorResponseSchema,
-			},
+				404: ErrorResponseSchema
+			}
 		}
 	)

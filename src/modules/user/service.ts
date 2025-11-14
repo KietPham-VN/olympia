@@ -8,22 +8,22 @@ export const userService = {
 
 	findById: (id: string) =>
 		prisma.user.findUnique({
-			where: { id },
+			where: { id }
 		}),
 
 	create: (data: CreateUserDto) =>
 		prisma.user.create({
-			data,
+			data
 		}),
 
 	update: (id: string, data: UpdateUserDto) =>
 		prisma.user.update({
 			where: { id },
-			data,
+			data
 		}),
 
 	delete: (id: string) =>
 		prisma.user.delete({
-			where: { id },
-		}),
+			where: { id }
+		})
 }

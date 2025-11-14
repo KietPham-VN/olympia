@@ -16,20 +16,20 @@ export const getAllUsersDetail = {
 								studentCode: 'S123456',
 								email: 'student@example.com',
 								name: 'Nguyen Van A',
-								school: 'Hanoi University',
-							},
+								school: 'Hanoi University'
+							}
 						],
 						meta: {
 							page: 1,
 							limit: 50,
 							total: 100,
-							totalPages: 2,
-						},
-					},
-				},
-			},
-		},
-	},
+							totalPages: 2
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 export const getUserByIdDetail = {
@@ -49,11 +49,11 @@ export const getUserByIdDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University',
-						},
-					},
-				},
-			},
+							school: 'Hanoi University'
+						}
+					}
+				}
+			}
 		},
 		'404': {
 			description: 'User not found',
@@ -62,12 +62,12 @@ export const getUserByIdDetail = {
 					example: {
 						success: false,
 						code: 404,
-						error: 'User not found',
-					},
-				},
-			},
-		},
-	},
+						error: 'User not found'
+					}
+				}
+			}
+		}
+	}
 }
 
 export const createUserDetail = {
@@ -87,11 +87,11 @@ export const createUserDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University',
-						},
-					},
-				},
-			},
+							school: 'Hanoi University'
+						}
+					}
+				}
+			}
 		},
 		'400': {
 			description: 'Bad request',
@@ -100,12 +100,12 @@ export const createUserDetail = {
 					example: {
 						success: false,
 						code: 400,
-						error: 'Validation error',
-					},
-				},
-			},
-		},
-	},
+						error: 'Validation error'
+					}
+				}
+			}
+		}
+	}
 }
 
 export const updateUserDetail = {
@@ -125,11 +125,11 @@ export const updateUserDetail = {
 							studentCode: 'S123456',
 							email: 'newemail@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University',
-						},
-					},
-				},
-			},
+							school: 'Hanoi University'
+						}
+					}
+				}
+			}
 		},
 		'404': {
 			description: 'User not found',
@@ -138,12 +138,12 @@ export const updateUserDetail = {
 					example: {
 						success: false,
 						code: 404,
-						error: 'User not found',
-					},
-				},
-			},
-		},
-	},
+						error: 'User not found'
+					}
+				}
+			}
+		}
+	}
 }
 
 export const deleteUserDetail = {
@@ -163,11 +163,11 @@ export const deleteUserDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University',
-						},
-					},
-				},
-			},
+							school: 'Hanoi University'
+						}
+					}
+				}
+			}
 		},
 		'404': {
 			description: 'User not found',
@@ -176,10 +176,10 @@ export const deleteUserDetail = {
 					example: {
 						success: false,
 						code: 404,
-						error: 'User not found',
-					},
-				},
-			},
-		},
-	},
+						error: 'User not found'
+					}
+				}
+			}
+		}
+	}
 }

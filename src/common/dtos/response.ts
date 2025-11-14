@@ -30,7 +30,7 @@ export function wrapResponse<T>(
 		message: message || (error ? '' : 'OK'),
 		error: error || undefined,
 		code,
-		meta,
+		meta
 	}
 }
 
@@ -44,7 +44,7 @@ export const ApiResponseSchema = <T extends TSchema>(dataSchema: T) =>
 		code: t.Number(),
 		message: t.Optional(t.String()),
 		error: t.Optional(t.String()),
-		data: t.Optional(t.Union([dataSchema, t.Null()])),
+		data: t.Optional(t.Union([dataSchema, t.Null()]))
 	})
 
 /**
@@ -58,7 +58,7 @@ export const ApiResponseWithMetaSchema = <T extends TSchema>(dataSchema: T) =>
 		message: t.Optional(t.String()),
 		error: t.Optional(t.String()),
 		meta: t.Optional(t.Union([PaginationSchema, t.Object({})])),
-		data: t.Optional(t.Union([dataSchema, t.Null()])),
+		data: t.Optional(t.Union([dataSchema, t.Null()]))
 	})
 
 /**
@@ -75,5 +75,5 @@ export const ErrorResponseSchema = t.Object({
 	success: t.Literal(false),
 	code: t.Number(),
 	error: t.String(),
-	message: t.Optional(t.String()),
+	message: t.Optional(t.String())
 })
