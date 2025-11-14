@@ -34,10 +34,6 @@ export function wrapResponse<T>(
 	}
 }
 
-/**
- * GENERIC API RESPONSE SCHEMA
- * Tạo schema response generic có thể tái sử dụng
- */
 export const ApiResponseSchema = <T extends TSchema>(dataSchema: T) =>
 	t.Object({
 		success: t.Boolean(),
