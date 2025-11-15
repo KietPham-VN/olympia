@@ -8,14 +8,16 @@ export const CreateUserBody = () =>
 			studentCode: t.String(),
 			email: t.String(),
 			name: t.String(),
-			school: t.String()
+			school: t.String(),
+			phone: t.String()
 		},
 		{
 			example: {
 				studentCode: 'S123456',
 				email: 'student@example.com',
 				name: 'Nguyen Van A',
-				school: 'Hanoi University'
+				school: 'Hanoi University',
+				phone: '0123456789'
 			}
 		}
 	)

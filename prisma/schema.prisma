@@ -9,11 +9,15 @@ datasource db {
 }
 
 model User {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   studentCode String
-  email       String @unique
+  email       String  @unique
+  password    String?
   name        String
+  phone       String
   school      String
+  isAdmin     Boolean @default(false)
 
   @@unique([school, studentCode])
+  @@map("users")
 }

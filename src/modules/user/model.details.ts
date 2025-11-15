@@ -1,22 +1,23 @@
 export const getAllUsersDetail = {
-	tags: ['Users'],
+	tags: ['users'],
 	summary: 'Get all users',
 	description: 'Retrieve a paginated list of all users',
 	responses: {
 		'200': {
-			description: 'Users retrieved successfully',
+			description: 'users retrieved successfully',
 			content: {
 				'application/json': {
 					example: {
 						success: true,
 						code: 200,
-						message: 'Users retrieved successfully',
+						message: 'users retrieved successfully',
 						data: [
 							{
 								studentCode: 'S123456',
 								email: 'student@example.com',
 								name: 'Nguyen Van A',
-								school: 'Hanoi University'
+								school: 'Hanoi University',
+								phone: '0123456789'
 							}
 						],
 						meta: {
@@ -33,7 +34,7 @@ export const getAllUsersDetail = {
 }
 
 export const getUserByIdDetail = {
-	tags: ['Users'],
+	tags: ['users'],
 	summary: 'Get user by ID',
 	description: 'Retrieve a single user by their ID',
 	responses: {
@@ -49,7 +50,8 @@ export const getUserByIdDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University'
+							school: 'Hanoi University',
+							phone: '0123456789'
 						}
 					}
 				}
@@ -71,7 +73,7 @@ export const getUserByIdDetail = {
 }
 
 export const createUserDetail = {
-	tags: ['Users'],
+	tags: ['users'],
 	summary: 'Create new user',
 	description: 'Create a new user',
 	responses: {
@@ -87,7 +89,8 @@ export const createUserDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University'
+							school: 'Hanoi University',
+							phone: '0123456789'
 						}
 					}
 				}
@@ -109,7 +112,7 @@ export const createUserDetail = {
 }
 
 export const updateUserDetail = {
-	tags: ['Users'],
+	tags: ['users'],
 	summary: 'Update user',
 	description: 'Update an existing user',
 	responses: {
@@ -125,7 +128,8 @@ export const updateUserDetail = {
 							studentCode: 'S123456',
 							email: 'newemail@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University'
+							school: 'Hanoi University',
+							phone: '0123456789'
 						}
 					}
 				}
@@ -147,7 +151,7 @@ export const updateUserDetail = {
 }
 
 export const deleteUserDetail = {
-	tags: ['Users'],
+	tags: ['users'],
 	summary: 'Delete user',
 	description: 'Delete a user by ID',
 	responses: {
@@ -163,7 +167,8 @@ export const deleteUserDetail = {
 							studentCode: 'S123456',
 							email: 'student@example.com',
 							name: 'Nguyen Van A',
-							school: 'Hanoi University'
+							school: 'Hanoi University',
+							phone: '0123456789'
 						}
 					}
 				}
