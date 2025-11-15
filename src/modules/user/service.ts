@@ -1,14 +1,30 @@
+import { prisma } from './../../prisma'
 import { CreateUserDto, UpdateUserDto } from './model'
-import { PrismaClient } from '../../generated/prisma/client'
-
-const prisma = new PrismaClient()
 
 export const userService = {
-	findAll: () => prisma.user.findMany(),
+	findAll: () =>
+		prisma.user.findMany({
+			select: {
+				id: true,
+				studentCode: true,
+				email: true,
+				name: true,
+				school: true,
+				phone: true
+			}
+		}),
 
 	findById: (id: string) =>
 		prisma.user.findUnique({
-			where: { id }
+			where: { id },
+			select: {
+				id: true,
+				studentCode: true,
+				email: true,
+				name: true,
+				school: true,
+				phone: true
+			}
 		}),
 
 	create: (data: CreateUserDto) =>

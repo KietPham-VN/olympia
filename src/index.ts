@@ -2,6 +2,7 @@ import { user } from './modules/user/index'
 import { Elysia } from 'elysia'
 import { swagger } from '@elysiajs/swagger'
 import bearer from '@elysiajs/bearer'
+import { auth } from './modules/auth'
 
 const app = new Elysia()
 	.use(swagger())
@@ -9,6 +10,7 @@ const app = new Elysia()
 	.get('/ping', () => ({ message: 'Pong!' }))
 	.listen(3000)
 app.use(user)
+app.use(auth)
 
 console.log('🚀 Server running: http://localhost:3000')
 console.log('📘 Swagger docs: http://localhost:3000/swagger')

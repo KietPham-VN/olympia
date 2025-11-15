@@ -16,7 +16,6 @@ import {
 } from '../../common/dtos/response'
 
 export const user = new Elysia({ prefix: '/users' })
-	// GET all users
 	.get(
 		'/',
 		async () => {
@@ -37,8 +36,6 @@ export const user = new Elysia({ prefix: '/users' })
 			}
 		}
 	)
-
-	// GET user by ID
 	.get(
 		'/:id',
 		async ({ params }) => {
@@ -55,8 +52,6 @@ export const user = new Elysia({ prefix: '/users' })
 			}
 		}
 	)
-
-	// POST create user
 	.post(
 		'/',
 		async ({ body }) => {
@@ -72,8 +67,6 @@ export const user = new Elysia({ prefix: '/users' })
 			}
 		}
 	)
-
-	// PUT update user
 	.put(
 		'/:id',
 		async ({ params, body }) => {
@@ -92,8 +85,6 @@ export const user = new Elysia({ prefix: '/users' })
 			}
 		}
 	)
-
-	// DELETE user
 	.delete(
 		'/:id',
 		async ({ params }) => {
