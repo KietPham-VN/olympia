@@ -13,7 +13,6 @@ export const requireAuth = (app: Elysia) =>
 			}
 
 			const payload = await jwtUtils.verifyToken(token)
-			console.log('👤 Decoded payload:', payload)
 
 			if (!payload) {
 				return { user: null }
