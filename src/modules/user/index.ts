@@ -14,90 +14,93 @@ import {
 	PaginatedResponseSchema,
 	ErrorResponseSchema
 } from '../../common/dtos/response'
+import { requireAuth } from '../../middlewares/requireAuth'
 
-export const user = new Elysia({ prefix: '/users' })
-	.get(
-		'/',
-		async () => {
-			const users = await userService.findAll()
-			const meta = { total: users.length, page: 1, limit: 50 }
-			return wrapResponse(
-				users.slice(0, 50),
-				200,
-				'Users retrieved successfully',
-				'',
-				meta
-			)
-		},
-		{
-			detail: getAllUsersDetail,
-			response: {
-				200: PaginatedResponseSchema(CreateUserBody())
+export const user = requireAuth(new Elysia()).group('/users', app =>
+	app
+		.get(
+			'/',
+			async () => {
+				const users = await userService.findAll()
+				const meta = { total: users.length, page: 1, limit: 50 }
+				return wrapResponse(
+					users.slice(0, 50),
+					200,
+					'Users retrieved successfully',
+					'',
+					meta
+				)
+			},
+			{
+				detail: getAllUsersDetail,
+				response: {
+					200: PaginatedResponseSchema(CreateUserBody())
+				}
 			}
-		}
-	)
-	.get(
-		'/:id',
-		async ({ params }) => {
-			const user = await userService.findById(String(params.id))
-			if (!user) return wrapResponse(null, 404, '', 'User not found')
-			return wrapResponse(user, 200, 'User retrieved successfully')
-		},
-		{
-			detail: getUserByIdDetail,
-			params: t.Object({ id: t.String() }),
-			response: {
-				200: ApiResponseSchema(CreateUserBody()),
-				404: ErrorResponseSchema
+		)
+		.get(
+			'/:id',
+			async ({ params }) => {
+				const user = await userService.findById(String(params.id))
+				if (!user) return wrapResponse(null, 404, '', 'User not found')
+				return wrapResponse(user, 200, 'User retrieved successfully')
+			},
+			{
+				detail: getUserByIdDetail,
+				params: t.Object({ id: t.String() }),
+				response: {
+					200: ApiResponseSchema(CreateUserBody()),
+					404: ErrorResponseSchema
+				}
 			}
-		}
-	)
-	.post(
-		'/',
-		async ({ body }) => {
-			const created = await userService.create(body)
-			return wrapResponse(created, 201, 'User created successfully')
-		},
-		{
-			detail: createUserDetail,
-			body: CreateUserBody(),
-			response: {
-				201: ApiResponseSchema(CreateUserBody()),
-				400: ErrorResponseSchema
+		)
+		.post(
+			'/',
+			async ({ body }) => {
+				const created = await userService.create(body)
+				return wrapResponse(created, 201, 'User created successfully')
+			},
+			{
+				detail: createUserDetail,
+				body: CreateUserBody(),
+				response: {
+					201: ApiResponseSchema(CreateUserBody()),
+					400: ErrorResponseSchema
+				}
 			}
-		}
-	)
-	.put(
-		'/:id',
-		async ({ params, body }) => {
-			const updated = await userService.update(String(params.id), body)
-			if (!updated) return wrapResponse(null, 404, '', 'User not found')
-			return wrapResponse(updated, 200, 'User updated successfully')
-		},
-		{
-			detail: updateUserDetail,
-			params: t.Object({ id: t.String() }),
-			body: UpdateUserBody(),
-			response: {
-				200: ApiResponseSchema(UpdateUserBody()),
-				404: ErrorResponseSchema,
-				400: ErrorResponseSchema
+		)
+		.put(
+			'/:id',
+			async ({ params, body }) => {
+				const updated = await userService.update(String(params.id), body)
+				if (!updated) return wrapResponse(null, 404, '', 'User not found')
+				return wrapResponse(updated, 200, 'User updated successfully')
+			},
+			{
+				detail: updateUserDetail,
+				params: t.Object({ id: t.String() }),
+				body: UpdateUserBody(),
+				response: {
+					200: ApiResponseSchema(UpdateUserBody()),
+					404: ErrorResponseSchema,
+					400: ErrorResponseSchema
+				}
 			}
-		}
-	)
-	.delete(
-		'/:id',
-		async ({ params }) => {
-			const deleted = await userService.delete(String(params.id))
-			if (!deleted) return wrapResponse(null, 404, '', 'User not found')
-			return wrapResponse(deleted, 200, 'User deleted successfully')
-		},
-		{
-			detail: deleteUserDetail,
-			params: t.Object({ id: t.String() }),
-			response: {
-				200: ApiResponseSchema(CreateUserBody()),
-				404: ErrorResponseSchema
+		)
+		.delete(
+			'/:id',
+			async ({ params }) => {
+				const deleted = await userService.delete(String(params.id))
+				if (!deleted) return wrapResponse(null, 404, '', 'User not found')
+				return wrapResponse(deleted, 200, 'User deleted successfully')
+			},
+			{
+				detail: deleteUserDetail,
+				params: t.Object({ id: t.String() }),
+				response: {
+					200: ApiResponseSchema(CreateUserBody()),
+					404: ErrorResponseSchema
+				}
 			}
-		}
-	)
+		)
+)
