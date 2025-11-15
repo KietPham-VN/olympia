@@ -1,4 +1,4 @@
-import { prisma } from '../../prisma'
+import { prisma } from '../../configurations/prisma'
 import { passwordUtils } from '../../common/utils/password.utils'
 import { LoginDto, LoginResponse } from './model'
 import { jwtUtils } from '../../common/utils/jwt.utils'

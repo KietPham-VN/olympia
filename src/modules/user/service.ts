@@ -1,4 +1,4 @@
-import { prisma } from './../../prisma'
+import { prisma } from '../../configurations/prisma'
 import { CreateUserDto, UpdateUserDto } from './model'
 
 export const userService = {
