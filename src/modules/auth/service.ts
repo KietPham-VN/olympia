@@ -1,6 +1,7 @@
 import { prisma } from '../../prisma'
 import { passwordUtils } from '../../common/utils/password.utils'
 import { LoginDto, LoginResponse } from './model'
+import { jwtUtils } from '../../common/utils/jwt.utils'
 
 export const authService = {
 	login: async (data: LoginDto): Promise<LoginResponse | null> => {
@@ -26,9 +27,13 @@ export const authService = {
 		if (!isPasswordValid) {
 			return null
 		}
-
+		const token = await jwtUtils.signAccessToken({
+			userId: user.id,
+			email: user.email,
+			isAdmin: user.isAdmin
+		})
 		return {
-			token: 'dummy-token'
+			token: token
 		}
 	}
 }
