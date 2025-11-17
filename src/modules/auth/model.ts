@@ -14,16 +14,7 @@ export const LoginBody = () =>
 		})
 	})
 
-export const LoginResponseData = () =>
-	t.Object({
-		token: t.Optional(t.String())
-	})
-
 export type LoginDto = {
 	email: string
 	password: string
-}
-
-export interface LoginResponse {
-	token: string
 }

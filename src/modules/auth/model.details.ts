@@ -10,10 +10,7 @@ export const loginDetail = {
 					example: {
 						success: true,
 						code: 200,
-						message: 'Đăng nhập thành công',
-						data: {
-							token: 'jwt-token-here'
-						}
+						message: 'Đăng nhập thành công'
 					}
 				}
 			}

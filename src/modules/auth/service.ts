@@ -1,10 +1,10 @@
 import { prisma } from '../../configurations/prisma'
 import { passwordUtils } from '../../common/utils/password.utils'
-import { LoginDto, LoginResponse } from './model'
+import { LoginDto } from './model'
 import { jwtUtils } from '../../common/utils/jwt.utils'
 
 export const authService = {
-	login: async (data: LoginDto): Promise<LoginResponse | null> => {
+	login: async (data: LoginDto): Promise<string | null> => {
 		const user = await prisma.user.findUnique({
 			where: { email: data.email },
 			select: {
@@ -32,8 +32,6 @@ export const authService = {
 			email: user.email,
 			isAdmin: user.isAdmin
 		})
-		return {
-			token: token
-		}
+		return token
 	}
 }
