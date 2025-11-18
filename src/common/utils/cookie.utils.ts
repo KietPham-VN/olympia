@@ -14,3 +14,7 @@ export const setAuthCookie = (cookie: any, token: string) => {
 		...COOKIE_OPTIONS
 	})
 }
+
+export const unsetAuthCookie = (cookie: any) => {
+	cookie.auth.remove()
+}
