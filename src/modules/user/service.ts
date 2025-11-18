@@ -1,5 +1,10 @@
 import { prisma } from '../../configurations/prisma'
-import { CreateUserDto, UpdateUserDto } from './model'
+import {
+	CreateUserDto,
+	UpdateUserDto,
+	CreateUserDtoSchema,
+	UpdateUserDtoSchema
+} from './model'
 
 export const userService = {
 	findAll: () =>
@@ -27,19 +32,65 @@ export const userService = {
 			}
 		}),
 
-	create: (data: CreateUserDto) =>
-		prisma.user.create({
-			data
-		}),
+	create: async (data: unknown): Promise<CreateUserDto> => {
+		// Validate với Zod
+		const validationResult = CreateUserDtoSchema.safeParse(data)
+		if (!validationResult.success) {
+			throw new Error(
+				validationResult.error.issues.map((e) => e.message).join(', ')
+			)
+		}
 
-	update: (id: string, data: UpdateUserDto) =>
-		prisma.user.update({
+		const validatedData = validationResult.data
+
+		return prisma.user.create({
+			data: validatedData,
+			select: {
+				id: true,
+				studentCode: true,
+				email: true,
+				name: true,
+				school: true,
+				phone: true
+			}
+		})
+	},
+
+	update: async (id: string, data: unknown): Promise<UpdateUserDto | null> => {
+		// Validate với Zod
+		const validationResult = UpdateUserDtoSchema.safeParse(data)
+		if (!validationResult.success) {
+			throw new Error(
+				validationResult.error.issues.map((e) => e.message).join(', ')
+			)
+		}
+
+		const validatedData = validationResult.data
+
+		return prisma.user.update({
 			where: { id },
-			data
-		}),
+			data: validatedData,
+			select: {
+				id: true,
+				studentCode: true,
+				email: true,
+				name: true,
+				school: true,
+				phone: true
+			}
+		})
+	},
 
 	delete: (id: string) =>
 		prisma.user.delete({
-			where: { id }
+			where: { id },
+			select: {
+				id: true,
+				studentCode: true,
+				email: true,
+				name: true,
+				school: true,
+				phone: true
+			}
 		})
 }

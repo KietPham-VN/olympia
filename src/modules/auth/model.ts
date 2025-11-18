@@ -1,4 +1,5 @@
 import { t } from 'elysia'
+import { z } from 'zod'
 
 export const LoginBody = () =>
 	t.Object({
@@ -14,7 +15,10 @@ export const LoginBody = () =>
 		})
 	})
 
-export type LoginDto = {
-	email: string
-	password: string
-}
+// Zod schema for validation
+export const LoginDtoSchema = z.object({
+	email: z.email({ message: 'Email không hợp lệ' }),
+	password: z.string().min(6, { message: 'Mật khẩu phải có ít nhất 6 ký tự' })
+})
+
+export type LoginDto = z.infer<typeof LoginDtoSchema>
